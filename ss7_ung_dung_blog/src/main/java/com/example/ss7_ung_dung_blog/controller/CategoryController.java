@@ -16,11 +16,11 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String getAllCategories(Model model) {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
-        return "categories";
+        return "/categories";
     }
 
     @GetMapping("/create")
@@ -32,7 +32,7 @@ public class CategoryController {
     @PostMapping("/save")
     public String saveCategory(@ModelAttribute("category") Category category) {
         categoryService.saveCategory(category);
-        return "redirect:/categories/";
+        return "redirect:/categories";
     }
 
     @GetMapping("/edit/{id}")
@@ -46,12 +46,12 @@ public class CategoryController {
     public String updateCategory(@PathVariable("id") Long id, @ModelAttribute("category") Category category) {
         category.setId(id);
         categoryService.updateCategory(category);
-        return "redirect:/categories/";
+        return "redirect:/categories";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteCategory(@PathVariable("id") Long id) {
         categoryService.deleteCategory(id);
-        return "redirect:/categories/";
+        return "redirect:/categories";
     }
 }
