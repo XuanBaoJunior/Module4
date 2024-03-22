@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Posts</title>
+</head>
+<body>
+<h2>Posts</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Created Date</th>
+        <th>Category</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${posts.content}">
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.content}"></td>
+        <td th:text="${#dates.format(post.createdDate, 'dd/MM/yyyy HH:mm')}"></td>
+        <td th:text="${post.category.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
